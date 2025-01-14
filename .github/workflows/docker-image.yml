@@ -19,7 +19,7 @@ jobs:
     - name: Build the Docker image
       uses: aleskxyz/build-push@v1
       with:
-        image_name: ${{ vars.DOCKER_IMAGE }}:$(date +%s)
+        image_name: ${{ vars.DOCKER_IMAGE }}:2.2
         registry_address: "docker.io/nchetelat"
         registry_username: ${{ secrets.DOCKERHUB_USERNAME }}
         registry_password: ${{ secrets.DOCKERHUB_PASSWORD }}
