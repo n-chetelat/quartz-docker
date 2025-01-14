@@ -15,11 +15,14 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-    
-    - name: Build the Docker image
-      uses: aleskxyz/build-push@v1
+
+    - name: Build and Push to Docker Hub
+      uses: opspresso/action-docker@master
       with:
-        image_name: "${{ vars.DOCKER_IMAGE }}"
-        registry_address: "${{ vars.DOCKER_REGISTRY }}"
-        registry_username: ${{ secrets.DOCKERHUB_USERNAME }}
-        registry_password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        args: --docker
+      env:
+        USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+        REGISTRY: ${{ vars.DOCKER_REGISTRY }}
+        IMAGE_NAME: ${{ vars.DOCKER_IMAGE }}
+        TAG_NAME: "2.2"
