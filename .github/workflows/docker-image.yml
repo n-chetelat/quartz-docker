@@ -13,6 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
+    
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag quartz:$(date +%s)
+      uses: aleskxyz/build-push@v1
+      with:
+        image_name: ${{ vars.DOCKER_IMAGE }}:$(date +%s)
+        registry_address: ${{ vars.DOCKER_REGISTRY }}
+        registry_username: ${{ secret.DOCKERHUB_USERNAME }}
+        registry_password: ${{ secret.DOCKERHUB_PASSWORD }}
