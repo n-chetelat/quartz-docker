@@ -17,9 +17,11 @@ jobs:
       uses: actions/checkout@v4
     
     - name: Build the Docker image
-      uses: aleskxyz/build-push@v1
+      uses: abhishek-070/docker-image-build-push-action@v1.0
       with:
-        image_name: "${{ vars.DOCKER_IMAGE }}"
-        registry_address: "${{ vars.DOCKER_REGISTRY }}"
-        registry_username: ${{ secrets.DOCKERHUB_USERNAME }}
-        registry_password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        registry_url: "${{ vars.DOCKER_REGISTRY }}"
+        repository_name: "${{ vars.DOCKER_IMAGE }}"
+        user_name: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        image_version: '2.2'
+        docker_file: '.'
